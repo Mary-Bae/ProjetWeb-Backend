@@ -1,0 +1,12 @@
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\bin\Debug\net7.0\Domain.deps.json
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\bin\Debug\net7.0\Domain.dll
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\bin\Debug\net7.0\Domain.pdb
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\Domain.dll
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\refint\Domain.dll
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\Domain.pdb
+D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\obj\Debug\net7.0\ref\Domain.dll
