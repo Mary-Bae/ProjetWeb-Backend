@@ -16,13 +16,12 @@ namespace DataAccessLayer
         public IEnumerable<CourseDTO> GetAll()
         {
             return _context.Courses
-            .Include(c => c.Level)
             .Include(c => c.User)
             .Select(c => new CourseDTO
         {
             Id = c.Id,
             Name = c.Name,
-            LevelName = c.Level.LevelName,
+            LevelName = c.LevelName,
             Schedule = c.Schedule,
             Username = c.User.Username,
             Description = c.Description
@@ -33,14 +32,12 @@ namespace DataAccessLayer
         {
             return _context.Courses
                 .Where(c => c.Id == id)
-                .Include(c => c.Level)
                 .Include(c => c.User)
                 .Select(c => new CourseDTO
                 {
                     Id = c.Id,
                     Name = c.Name,
-                    LevelName = c.Level.LevelName,
-                    LevelId = c.LevelId,
+                    LevelName = c.LevelName,
                     Schedule = c.Schedule,
                     Username = c.User.Username,
                     UserId = c.UserId,
@@ -52,7 +49,6 @@ namespace DataAccessLayer
         public Course? GetCourseForUpdate(int id)
         {
             return _context.Courses
-                           .Include(c => c.Level)
                            .Include(c => c.User)
                            .FirstOrDefault(c => c.Id == id);
         }
