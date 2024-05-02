@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J51h1gVKsWQzYfLT5RVeBljU1XeCUgSTjs1n2WqannuzGG/6eJVOUrmSFw8rye+68nNdR/Klja2fNPcWbmOZrg==",
+  "dgSpecHash": "qfDuRFtXv1aOfvCSl6IdoCeyP84jes54pmyvZ1CnfhWZFxYV+cmgnUn7TNrCLbab+1VFtpgn0x02NLPoI0YE0g==",
   "success": true,
-  "projectFilePath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\Projet\\Backend\\Presentation\\Presentation.csproj",
+  "projectFilePath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\ProjetWeb-backend\\Backend\\Presentation\\Presentation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marylène\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Marylène\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

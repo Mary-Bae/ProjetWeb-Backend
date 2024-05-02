@@ -2757,11 +2757,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\Projet\\Backend\\BusinessLayer\\BusinessLayer.csproj",
+      "projectUniqueName": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\ProjetWeb-backend\\Backend\\BusinessLayer\\BusinessLayer.csproj",
       "projectName": "BusinessLayer",
-      "projectPath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\Projet\\Backend\\BusinessLayer\\BusinessLayer.csproj",
+      "projectPath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\ProjetWeb-backend\\Backend\\BusinessLayer\\BusinessLayer.csproj",
       "packagesPath": "C:\\Users\\Marylène\\.nuget\\packages\\",
-      "outputPath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\Projet\\Backend\\BusinessLayer\\obj\\",
+      "outputPath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\ProjetWeb-backend\\Backend\\BusinessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2783,8 +2783,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\Projet\\Backend\\DataAccessLayer\\DataAccessLayer.csproj": {
-              "projectPath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\Projet\\Backend\\DataAccessLayer\\DataAccessLayer.csproj"
+            "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\ProjetWeb-backend\\Backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\ProjetWeb-backend\\Backend\\DataAccessLayer\\DataAccessLayer.csproj"
             }
           }
         }

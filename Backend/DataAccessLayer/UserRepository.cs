@@ -16,7 +16,10 @@ namespace DataAccessLayer
         {
             _context = context;
         }
-
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _context.Users.Include(u => u.Role).ToList();
+        }
         public User FindUserByUsername(string username)
         {
             return _context.Users.Include(u => u.Role).FirstOrDefault(u => u.Username.ToLower() == username.ToLower());

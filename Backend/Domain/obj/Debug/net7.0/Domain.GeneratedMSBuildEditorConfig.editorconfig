@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Domain
-build_property.ProjectDir = D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\Projet\Backend\Domain\
+build_property.ProjectDir = D:\Ephec\Annee 3\Projet de developpement web\Projet-PSR12204\ProjetWeb-backend\Backend\Domain\

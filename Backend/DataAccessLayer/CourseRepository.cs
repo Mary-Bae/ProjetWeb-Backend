@@ -20,6 +20,7 @@ namespace DataAccessLayer
             .Include(c => c.User)
             .Select(c => new CourseDTO
         {
+            Id = c.Id,
             Name = c.Name,
             LevelName = c.Level.LevelName,
             Schedule = c.Schedule,
@@ -36,10 +37,13 @@ namespace DataAccessLayer
                 .Include(c => c.User)
                 .Select(c => new CourseDTO
                 {
+                    Id = c.Id,
                     Name = c.Name,
                     LevelName = c.Level.LevelName,
+                    LevelId = c.LevelId,
                     Schedule = c.Schedule,
                     Username = c.User.Username,
+                    UserId = c.UserId,
                     Description = c.Description
                 })
                 .FirstOrDefault();

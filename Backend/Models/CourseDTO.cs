@@ -2,8 +2,11 @@
 {
     public class CourseDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
+        public int LevelId { get; set; }
         public string LevelName { get; set; }
+        public int UserId { get; set; }
         public string Schedule { get; set; }
         public string Username { get; set; }
         public string Description { get; set; }

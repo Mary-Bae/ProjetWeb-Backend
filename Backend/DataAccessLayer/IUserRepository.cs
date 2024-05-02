@@ -9,6 +9,7 @@ namespace DataAccessLayer
 {
     public interface IUserRepository
     {
+        IEnumerable<User> GetAllUsers();
         User FindUserByUsername(string username);
         void AddUser(User user);
         void UpdateUser(User user);

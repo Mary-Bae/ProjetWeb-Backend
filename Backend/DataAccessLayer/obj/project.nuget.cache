@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rbqO+Vy5jRzXNss/BhjqW8LWr/55Hs7ipaykkFhioL7GHSc4JyUdRkuV1iT3AvKFeqYGzoQLHXhK4e0v3pNhrg==",
+  "dgSpecHash": "5Z+a3zFZOWewKd6NI7j9w2y1Oe261WPdVsVtWCElU/Bz03XA3cuWN36kvIMH9prjFE3a3MBNJHUnUAdygUX1oQ==",
   "success": true,
-  "projectFilePath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\Projet\\Backend\\DataAccessLayer\\DataAccessLayer.csproj",
+  "projectFilePath": "D:\\Ephec\\Annee 3\\Projet de developpement web\\Projet-PSR12204\\ProjetWeb-backend\\Backend\\DataAccessLayer\\DataAccessLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marylène\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Marylène\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
