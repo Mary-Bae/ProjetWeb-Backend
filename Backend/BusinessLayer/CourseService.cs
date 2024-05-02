@@ -25,7 +25,7 @@ namespace BusinessLayer
             var course = new Course
             {
                 Name = courseDto.Name,
-                LevelId = courseDto.LevelId,
+                LevelName = courseDto.LevelName,
                 Schedule = courseDto.Schedule,
                 UserId = courseDto.UserId,
                 Description = courseDto.Description
@@ -47,7 +47,7 @@ namespace BusinessLayer
             }
 
             course.Name = courseDto.Name;
-            course.LevelId = courseDto.LevelId;
+            course.LevelName = courseDto.LevelName;
             course.Schedule = courseDto.Schedule;
             course.UserId = courseDto.UserId;
             course.Description = courseDto.Description;
