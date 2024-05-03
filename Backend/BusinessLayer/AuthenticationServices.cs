@@ -27,7 +27,7 @@ namespace BusinessLayer
             _config = config;
         }
 
-        public void RegisterUser(string username, string password, int roleId)
+        public void RegisterUser(string username, string password, int role)
         {
             var existingUser = _userRepository.FindUserByUsername(username);
             if (existingUser != null)
@@ -35,7 +35,7 @@ namespace BusinessLayer
 
             var salt = DateTime.Now.ToString("dddd"); // get the day of week. Ex: Sunday
             var passwordHash = HashPassword(password, salt);
-            var newUser = new User { Username = username, Password = passwordHash, Salt = salt, RoleId = roleId };
+            var newUser = new User { Username = username, Password = passwordHash, Salt = salt, RoleId = role };
             _userRepository.AddUser(newUser);
         }
 
@@ -54,7 +54,6 @@ namespace BusinessLayer
                 return new { token };
             }
             throw new Exception("Login failed; Invalid userID or password");
-
         }
 
         public string RefreshToken(string token)
@@ -119,7 +118,7 @@ namespace BusinessLayer
                        salt: Encoding.UTF8.GetBytes(salt),
                        iterations: 10,
                        hashAlgorithm: HashAlgorithmName.SHA512,
-                       outputLength: 10);
+                       outputLength: 64);
             return Convert.ToHexString(hash);
         }
 
