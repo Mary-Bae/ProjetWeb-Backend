@@ -7,10 +7,11 @@ namespace BusinessLayer
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _courseRepository;
-
-        public CourseService(ICourseRepository courseRepository)
+        private readonly IUserRepository _userRepository;
+        public CourseService(ICourseRepository courseRepository, IUserRepository userRepository)
         {
             _courseRepository = courseRepository;
+            _userRepository = userRepository;
         }
         public IEnumerable<CourseDTO> GetAll()
         {
@@ -22,6 +23,11 @@ namespace BusinessLayer
         }
         public void AddCourse(CourseCreateDTO courseDto)
         {
+            var user = _userRepository.FindUserByUserId(courseDto.UserId);
+            if (user == null || user.RoleId != 2)
+            {
+                throw new UnauthorizedAccessException("Seuls les instructeurs peuvent donner cours.");
+            }
             var course = new Course
             {
                 Name = courseDto.Name,
@@ -41,9 +47,15 @@ namespace BusinessLayer
         public void UpdateCourse(int id, CourseUpdateDTO courseDto)
         {
             var course = _courseRepository.GetCourseForUpdate(id);
+            var user = _userRepository.FindUserByUserId(courseDto.UserId);
+
             if (course == null)
             {
                 throw new InvalidOperationException("Course not found");
+            }     
+            if (user == null || user.RoleId != 2)
+            {
+                throw new UnauthorizedAccessException("Seuls les instructeurs peuvent donner cours.");
             }
 
             course.Name = courseDto.Name;
@@ -54,6 +66,8 @@ namespace BusinessLayer
 
             _courseRepository.UpdateCourse(course);
         }
+
+        
     }
 
 

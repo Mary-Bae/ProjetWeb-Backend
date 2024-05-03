@@ -20,10 +20,16 @@ namespace DataAccessLayer
         {
             return _context.Users.Include(u => u.Role).ToList();
         }
-        public User FindUserByUsername(string username)
+        public User? FindUserByUsername(string username)
         {
-            return _context.Users.Include(u => u.Role).FirstOrDefault(u => u.Username.ToLower() == username.ToLower());
+            return _context.Users.Include(u => u.Role)
+                .FirstOrDefault(u => u.Username.ToLower() == username.ToLower());
 
+        }
+
+        public User? FindUserByUserId(int userId)
+        {
+            return _context.Users.Find(userId);
         }
 
         public void AddUser(User user)
