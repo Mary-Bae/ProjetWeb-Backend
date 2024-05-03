@@ -395,5 +395,10 @@ FodyWeavers.xsd
 *.msp
 
 # JetBrains Rider
-*.sln.iml 
+*.sln.iml
+
+# Exclure les fichiers FileContentIndex
+*.FileContentIndex
+# ou si c'est un dossier
+FileContentIndex/
 
