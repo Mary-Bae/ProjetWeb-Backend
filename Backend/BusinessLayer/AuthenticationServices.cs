@@ -27,7 +27,7 @@ namespace BusinessLayer
             _config = config;
         }
 
-        public void RegisterUser(string username, string password, int role)
+        public void RegisterUser(string username, string password)
         {
             var existingUser = _userRepository.FindUserByUsername(username);
             if (existingUser != null)
@@ -35,7 +35,7 @@ namespace BusinessLayer
 
             var salt = DateTime.Now.ToString("dddd"); // get the day of week. Ex: Sunday
             var passwordHash = HashPassword(password, salt);
-            var newUser = new User { Username = username, Password = passwordHash, Salt = salt, RoleId = role };
+            var newUser = new User { Username = username, Password = passwordHash, Salt = salt, RoleId = 4 };
             _userRepository.AddUser(newUser);
         }
 

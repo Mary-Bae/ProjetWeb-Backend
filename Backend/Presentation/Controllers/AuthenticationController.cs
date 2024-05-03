@@ -21,11 +21,11 @@ namespace Presentation
 
         [HttpPost("Register")]
         [AllowAnonymous]
-        public IActionResult Register(string login, string password, int role)
+        public IActionResult Register(string login, string password)
         {
             try
             {
-                _authenticationService.RegisterUser(login, password, role);
+                _authenticationService.RegisterUser(login, password);
                 return Ok("User registered successfully.");
             }
             catch (Exception ex)

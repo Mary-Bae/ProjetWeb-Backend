@@ -11,7 +11,7 @@ namespace BusinessLayer
 {
     public interface IAuthenticationServices
     {
-        void RegisterUser(string username, string password, int role);
+        void RegisterUser(string username, string password);
         object Login(string username, string password);
         string RefreshToken(string token);
         string GenerateJSONWebToken(User user);
