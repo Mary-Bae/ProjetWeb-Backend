@@ -10,7 +10,8 @@ namespace DataAccessLayer
     public interface IUserRepository
     {
         IEnumerable<User> GetAllUsers();
-        User FindUserByUsername(string username);
+        User? FindUserByUsername(string username);
+        User? FindUserByUserId(int userId);
         void AddUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int userId);

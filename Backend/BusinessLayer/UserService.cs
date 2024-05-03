@@ -27,7 +27,13 @@ namespace BusinessLayer
                 Username = user.Username,
                 RoleId = user.RoleId
 
-    }).ToList();
+            }).ToList();
+        }
+
+        public bool IsInstructor(int userId)
+        {
+            var user = _userRepository.FindUserByUserId(userId);
+            return user != null && user.RoleId == 2;
         }
     }
 }
