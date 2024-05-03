@@ -51,11 +51,11 @@ namespace Presentation
             try
             {
                 _courseService.AddCourse(courseDto);
-                return Ok("Course added successfully.");
+                return Ok();
             }
             catch (DbUpdateException ex)
             {
-                return BadRequest("Failed to add course: " + ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
@@ -70,15 +70,15 @@ namespace Presentation
             try
             {
                 _courseService.DeleteCourse(id);
-                return Ok("Course deleted successfully.");
+                return Ok();
             }
             catch (InvalidOperationException ex)
             {
-                return NotFound("Course not found: " + ex.Message);
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred: " + ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -89,15 +89,15 @@ namespace Presentation
             try
             {
                 _courseService.UpdateCourse(id, updatedCourseDto);
-                return Ok("Course updated successfully.");
+                return Ok();
             }
             catch (InvalidOperationException ex)
             {
-                return NotFound("Course not found: " + ex.Message);
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred: " + ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 
