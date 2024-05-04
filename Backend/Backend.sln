@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{9C48F6F9-A795-4CAC-B61C-33967F6974A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{8DF4AF28-B03C-438D-94EA-21044A6D4717}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{8DF4AF28-B03C-438D-94EA-21044A6D4717}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionList", "ExceptionList\ExceptionList.csproj", "{3D477787-BD0A-4EAE-8040-207FA43CD6B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{8DF4AF28-B03C-438D-94EA-21044A6D4717}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DF4AF28-B03C-438D-94EA-21044A6D4717}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DF4AF28-B03C-438D-94EA-21044A6D4717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D477787-BD0A-4EAE-8040-207FA43CD6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D477787-BD0A-4EAE-8040-207FA43CD6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D477787-BD0A-4EAE-8040-207FA43CD6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D477787-BD0A-4EAE-8040-207FA43CD6B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{A68E4B8C-5AA0-4009-8AD3-A5E6B0890906} = {8BE4E8BE-1E3A-46EA-8BED-308ABF5CC2EC}
 		{9C48F6F9-A795-4CAC-B61C-33967F6974A8} = {8BE4E8BE-1E3A-46EA-8BED-308ABF5CC2EC}
 		{8DF4AF28-B03C-438D-94EA-21044A6D4717} = {8BE4E8BE-1E3A-46EA-8BED-308ABF5CC2EC}
+		{3D477787-BD0A-4EAE-8040-207FA43CD6B0} = {8BE4E8BE-1E3A-46EA-8BED-308ABF5CC2EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A86C2B52-D463-43DF-A23B-D88488E602DA}

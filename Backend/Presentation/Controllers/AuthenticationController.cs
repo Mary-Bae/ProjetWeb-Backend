@@ -26,7 +26,7 @@ namespace Presentation
             try
             {
                 _authenticationService.RegisterUser(login, password);
-                return Ok("User registered successfully.");
+                return Ok(_authenticationService);
             }
             catch (Exception ex)
             {
@@ -63,7 +63,7 @@ namespace Presentation
             try
             {
                 _authenticationService.AssignRole(username, roleName);
-                return Ok("Role assigned successfully.");
+                return Ok(_authenticationService);
             }
             catch (Exception ex)
             {

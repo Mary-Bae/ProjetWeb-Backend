@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer;
 using Domain;
+using ExceptionList;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -31,7 +32,7 @@ namespace BusinessLayer
         {
             var existingUser = _userRepository.FindUserByUsername(username);
             if (existingUser != null)
-                throw new Exception("User already exists");
+                throw new ListOfExceptions(ErreurCodeEnum.UserExists);
 
             var salt = DateTime.Now.ToString("dddd"); // get the day of week. Ex: Sunday
             var passwordHash = HashPassword(password, salt);
@@ -44,7 +45,7 @@ namespace BusinessLayer
             var user = _userRepository.FindUserByUsername(username.ToLower());
             if (user == null)
             {
-                throw new Exception("Login failed; Invalid userID");
+                throw new ListOfExceptions(ErreurCodeEnum.LoginFailed);
             }
 
             var passwordHash = HashPassword(password, user.Salt);
@@ -53,7 +54,7 @@ namespace BusinessLayer
                 var token = GenerateJSONWebToken(user);
                 return new { token };
             }
-            throw new Exception("Login failed; Invalid userID or password");
+            throw new ListOfExceptions(ErreurCodeEnum.LoginOrPasswordFailed);
         }
 
         public string RefreshToken(string token)
@@ -61,17 +62,17 @@ namespace BusinessLayer
             var (principal, jwtToken) = DecodeJwtToken(token);
             if (jwtToken == null)
             {
-                throw new SecurityTokenException("Invalid token");
+                throw new ListOfExceptions(ErreurCodeEnum.InvalidToken);
             }
             var userName = jwtToken.Subject;
             if (string.IsNullOrEmpty(userName))
             {
-                throw new Exception("User not found");
+                throw new ListOfExceptions(ErreurCodeEnum.UserNotFound);
             }
             var user = _userRepository.FindUserByUsername(userName.ToLower());
             if (user == null)
             {
-                throw new Exception("User not found");
+                throw new ListOfExceptions(ErreurCodeEnum.UserNotFound);
             }
             return GenerateJSONWebToken(user);
         }
@@ -146,7 +147,7 @@ namespace BusinessLayer
                 JwtSecurityToken jwtToken = handler.ReadJwtToken(token) as JwtSecurityToken;
                 return (principal, jwtToken);
             }
-            throw new SecurityTokenException("Invalid token");
+            throw new ListOfExceptions(ErreurCodeEnum.InvalidToken);
         }
 
         public void AssignRole(string username, string roleName)
@@ -154,12 +155,12 @@ namespace BusinessLayer
             var user = _userRepository.FindUserByUsername(username);
             if (user == null)
             {
-                throw new Exception("User not found");
+                throw new ListOfExceptions(ErreurCodeEnum.UserNotFound);
             }
             var role = _roleRepository.FindRoleByName(roleName);
             if (role == null)
             {
-                throw new Exception("Role not found");
+                throw new ListOfExceptions(ErreurCodeEnum.RoleNotFound);
             }
 
             user.RoleId = role.Id;
