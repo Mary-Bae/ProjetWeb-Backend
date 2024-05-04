@@ -11,7 +11,7 @@ namespace Presentation
     {
         private readonly ILogger<AuthenticationController> _logger;
         private readonly IAuthenticationServices _authenticationService;
-        
+
         public AuthenticationController(ILogger<AuthenticationController> logger,
                                         IAuthenticationServices authenticationService)
         {

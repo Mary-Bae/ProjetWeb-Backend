@@ -162,8 +162,8 @@ namespace BusinessLayer
                 throw new Exception("Role not found");
             }
 
-            user.RoleId = role.Id; 
-            _userRepository.UpdateUser(user); 
+            user.RoleId = role.Id;
+            _userRepository.UpdateUser(user);
         }
     }
 }
