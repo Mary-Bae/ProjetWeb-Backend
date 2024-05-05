@@ -38,7 +38,14 @@ namespace Presentation
         [AllowAnonymous]
         public object Login(string login, string password)
         {
-            return _authenticationService.Login(login, password);
+            try
+            {
+                return _authenticationService.Login(login, password);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("Refreshtoken")]
