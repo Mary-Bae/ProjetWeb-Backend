@@ -11,6 +11,8 @@ namespace DataAccessLayer
     public interface IUserRepository
     {
         IEnumerable<UserDTO> GetAllUsers();
+
+        IEnumerable<StudentGradeDTO> GetStudentsGrades();
         User? FindUserByUsername(string username);
         User? FindUserByUserId(int userId);
         void AddUser(User user);

@@ -24,5 +24,20 @@ namespace Presentation
             var users = _userService.GetAllUsers();
             return Ok(users);
         }
+
+        [HttpGet("grades")]
+        [Authorize(Roles = "admin")]
+        public ActionResult<IEnumerable<StudentGradeDTO>> GetStudentGrades()
+        {
+            try
+            {
+                var studentGrades = _userService.GetStudentsGrades();
+                return Ok(studentGrades);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

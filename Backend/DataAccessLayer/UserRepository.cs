@@ -29,6 +29,19 @@ namespace DataAccessLayer
                 })
             .ToList();
         }
+
+        public IEnumerable<StudentGradeDTO> GetStudentsGrades()
+        {
+            return _context.GradeStudents
+                .Where(gs => gs.User.Role.RoleName == "Student")
+                .Select(gs => new StudentGradeDTO
+                {
+                    Username = gs.User.Username,
+                    GradeName = gs.Grade.GradeName
+                })
+        .ToList();
+        }
+
         public User? FindUserByUsername(string username)
         {
             return _context.Users.Include(u => u.Role)
