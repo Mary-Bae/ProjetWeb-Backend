@@ -30,6 +30,11 @@ namespace BusinessLayer
             }).ToList();
         }
 
+        public IEnumerable<StudentGradeDTO> GetStudentsGrades()
+        {
+            return _userRepository.GetStudentsGrades();
+        }
+
         public bool IsInstructor(int userId)
         {
             var user = _userRepository.FindUserByUserId(userId);

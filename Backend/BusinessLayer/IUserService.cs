@@ -6,5 +6,6 @@ namespace BusinessLayer
     public interface IUserService
     {
         IEnumerable<UserDTO> GetAllUsers();
+        IEnumerable<StudentGradeDTO> GetStudentsGrades();
     }
 }
