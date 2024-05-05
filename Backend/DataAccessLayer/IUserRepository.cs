@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace DataAccessLayer
 {
     public interface IUserRepository
     {
-        IEnumerable<User> GetAllUsers();
+        IEnumerable<UserDTO> GetAllUsers();
         User? FindUserByUsername(string username);
         User? FindUserByUserId(int userId);
         void AddUser(User user);
