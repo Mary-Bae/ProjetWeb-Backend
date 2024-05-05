@@ -25,7 +25,8 @@ namespace BusinessLayer
             {
                 Id = user.Id,
                 Username = user.Username,
-                RoleId = user.RoleId
+                //RoleId = user.RoleId,
+                RoleName = user.RoleName
 
             }).ToList();
         }

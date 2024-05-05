@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,20 @@ namespace DataAccessLayer
         {
             _context = context;
         }
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<UserDTO> GetAllUsers()
         {
-            return _context.Users.Include(u => u.Role).ToList();
+                return _context.Users
+                .Include(c => c.Role)
+                .Select(c => new UserDTO
+                {
+                    Id = c.Id,
+                    Username = c.Username,
+                    RoleName = c.Role.RoleName,
+                    //RoleId = c.RoleId
+                })
+            .ToList();
+
+            //return _context.Users.Include(u => u.Role).ToList();
         }
         public User? FindUserByUsername(string username)
         {
