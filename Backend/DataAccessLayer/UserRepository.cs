@@ -26,11 +26,8 @@ namespace DataAccessLayer
                     Id = c.Id,
                     Username = c.Username,
                     RoleName = c.Role.RoleName,
-                    //RoleId = c.RoleId
                 })
             .ToList();
-
-            //return _context.Users.Include(u => u.Role).ToList();
         }
         public User? FindUserByUsername(string username)
         {

@@ -12,6 +12,6 @@ namespace Models
         public string Username { get; set; }
         public int RoleId { get; set; }
         public string RoleName { get; set; }
-        public string LevelName { get; set; }
+        public string GradeName { get; set; }
     }
 }
