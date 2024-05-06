@@ -75,12 +75,6 @@ namespace DataAccessLayer
                 })
                 .FirstOrDefault();
         }
-
-        //public User? FindUserByUserId(int userId)
-        //{
-        //    return _context.Users.Find(userId);
-        //}
-
         public void AddUser(User user)
         {
             _context.Users.Add(user);
