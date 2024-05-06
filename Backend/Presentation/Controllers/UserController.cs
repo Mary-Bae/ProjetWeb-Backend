@@ -39,5 +39,13 @@ namespace Presentation
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet("ByRole/{roleName}")]
+        [Authorize(Roles = "admin, instructor")]
+        public ActionResult<IEnumerable<UserDTO>> GetUsersByRole(string roleName)
+        {
+            var users = _userService.GetUsersByRole(roleName);
+            return Ok(users);
+        }
     }
 }

@@ -20,14 +20,12 @@ namespace BusinessLayer
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            var users = _userRepository.GetAllUsers();
-            return users.Select(user => new UserDTO
-            {
-                Id = user.Id,
-                Username = user.Username,
-                RoleName = user.RoleName
+            return _userRepository.GetAllUsers();
+        }
 
-            }).ToList();
+        public IEnumerable<UserDTO> GetUsersByRole(string roleName)
+        {
+            return _userRepository.GetUsersByRole(roleName);
         }
 
         public IEnumerable<StudentGradeDTO> GetStudentsGrades()

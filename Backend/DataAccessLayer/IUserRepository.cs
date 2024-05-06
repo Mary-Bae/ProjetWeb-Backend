@@ -13,6 +13,7 @@ namespace DataAccessLayer
         IEnumerable<UserDTO> GetAllUsers();
 
         IEnumerable<StudentGradeDTO> GetStudentsGrades();
+        IEnumerable<UserDTO> GetUsersByRole(string roleName);
         User? FindUserByUsername(string username);
         User? FindUserByUserId(int userId);
         void AddUser(User user);

@@ -42,11 +42,22 @@ namespace DataAccessLayer
         .ToList();
         }
 
+        public IEnumerable<UserDTO> GetUsersByRole(string roleName)
+        {
+            return _context.Users
+                .Where(u => u.Role.RoleName == roleName)
+                .Select(u => new UserDTO
+                {
+                    Id = u.Id,
+                    Username = u.Username
+                })
+        .ToList();
+        }
+
         public User? FindUserByUsername(string username)
         {
             return _context.Users.Include(u => u.Role)
                 .FirstOrDefault(u => u.Username.ToLower() == username.ToLower());
-
         }
 
         public User? FindUserByUserId(int userId)
