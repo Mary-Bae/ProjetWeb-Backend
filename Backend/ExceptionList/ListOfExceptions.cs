@@ -7,7 +7,8 @@
             LoginOrPasswordFailed,
             InvalidToken,
             UserNotFound,
-            RoleNotFound
+            RoleNotFound,
+            CourseNotFound
     }
         public class ListOfExceptions : Exception
         {
@@ -47,6 +48,9 @@
                     break;
                 case ErreurCodeEnum.RoleNotFound:
                     _messageToReturn = "Role introuvable ";
+                    break;
+                case ErreurCodeEnum.CourseNotFound:
+                    _messageToReturn = "Cours introuvable ";
                     break;
                 default:
                         _messageToReturn = "Erreur non reconnue";

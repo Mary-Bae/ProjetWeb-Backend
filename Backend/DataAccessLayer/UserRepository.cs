@@ -1,4 +1,5 @@
 ﻿using Domain;
+using ExceptionList;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
@@ -84,6 +85,10 @@ namespace DataAccessLayer
             {
                 _context.Users.Remove(user);
                 _context.SaveChanges();
+            }
+            else
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.UserNotFound);
             }
         }
     }

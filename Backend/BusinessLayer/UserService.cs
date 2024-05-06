@@ -33,10 +33,9 @@ namespace BusinessLayer
             return _userRepository.GetStudentsGrades();
         }
 
-        public bool IsInstructor(int userId)
+        public void DeleteUser(int id)
         {
-            var user = _userRepository.FindUserByUserId(userId);
-            return user != null && user.RoleId == 2;
+            _userRepository.DeleteUser(id);
         }
     }
 }

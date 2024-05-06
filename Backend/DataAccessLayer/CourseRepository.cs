@@ -1,4 +1,5 @@
 ﻿using Domain;
+using ExceptionList;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Models;
@@ -67,7 +68,7 @@ namespace DataAccessLayer
             }
             else
             {
-                throw new InvalidOperationException("Course not found");
+                throw new ListOfExceptions(ErreurCodeEnum.CourseNotFound);
             }
         }
         public void UpdateCourse(Course course)
