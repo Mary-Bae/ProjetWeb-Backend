@@ -61,10 +61,25 @@ namespace DataAccessLayer
                 .FirstOrDefault(u => u.Username.ToLower() == username.ToLower());
         }
 
-        public User? FindUserByUserId(int userId)
+        public UserDTO? GetUserById(int id)
         {
-            return _context.Users.Find(userId);
+            return _context.Users
+                .Where(u => u.Id == id)
+                .Include(u => u.Role)
+                .Select(u => new UserDTO
+                {
+                    Id = u.Id,
+                    Username = u.Username,
+                    RoleId = u.RoleId,
+                    RoleName = u.Role.RoleName
+                })
+                .FirstOrDefault();
         }
+
+        //public User? FindUserByUserId(int userId)
+        //{
+        //    return _context.Users.Find(userId);
+        //}
 
         public void AddUser(User user)
         {

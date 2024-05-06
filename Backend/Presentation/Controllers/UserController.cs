@@ -64,7 +64,19 @@ namespace Presentation
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
+            } 
+        }
+
+        [HttpGet("ById")]
+        [Authorize(Roles = "admin, instructor")]
+        public ActionResult<CourseDTO> Get(int id)
+        {
+            var user = _userService.GetUserById(id);
+            if (user == null)
+            {
+                return NotFound();
             }
+            return Ok(user);
         }
     }
 }

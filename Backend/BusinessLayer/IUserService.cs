@@ -9,5 +9,6 @@ namespace BusinessLayer
         IEnumerable<StudentGradeDTO> GetStudentsGrades();
         IEnumerable<UserDTO> GetUsersByRole(string roleName);
         void DeleteUser(int id);
+        UserDTO? GetUserById(int id);
     }
 }

@@ -37,5 +37,9 @@ namespace BusinessLayer
         {
             _userRepository.DeleteUser(id);
         }
+        public UserDTO? GetUserById(int id)
+        {
+            return _userRepository.GetUserById(id);
+        }
     }
 }
