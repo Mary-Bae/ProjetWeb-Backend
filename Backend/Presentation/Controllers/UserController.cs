@@ -69,7 +69,7 @@ namespace Presentation
 
         [HttpGet("ById")]
         [Authorize(Roles = "admin, instructor")]
-        public ActionResult<CourseDTO> Get(int id)
+        public ActionResult<UserDTO> Get(int id)
         {
             var user = _userService.GetUserById(id);
             if (user == null)
