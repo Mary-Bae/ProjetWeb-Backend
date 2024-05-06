@@ -1,16 +1,14 @@
-﻿using Domain;
-using Models;
+﻿using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer
+namespace BusinessLayer
 {
-    public interface IRoleRepository
+    public interface IRoleService
     {
-        Role FindRoleByName(string roleName);
         IEnumerable<RoleDTO> GetAllRoles();
     }
 }

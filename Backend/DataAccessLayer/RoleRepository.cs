@@ -1,4 +1,6 @@
 ﻿using Domain;
+using Microsoft.EntityFrameworkCore;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,17 @@ namespace DataAccessLayer
         public Role FindRoleByName(string roleName)
         {
             return _context.Roles.FirstOrDefault(r => r.RoleName == roleName);
+        }
+
+        public IEnumerable<RoleDTO> GetAllRoles()
+        {
+            return _context.Roles
+            .Select(r => new RoleDTO
+            {
+                Id = r.Id,
+                RoleName = r.RoleName
+            })
+        .ToList();
         }
     }
 }

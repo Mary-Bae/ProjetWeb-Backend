@@ -23,7 +23,7 @@ namespace BusinessLayer
         }
         public void AddCourse(CourseCreateDTO courseDto)
         {
-            var user = _userRepository.FindUserByUserId(courseDto.UserId);
+            var user = _userRepository.GetUserById(courseDto.UserId);
             if (user == null || user.RoleId != 2)
             {
                 throw new UnauthorizedAccessException("Seuls les instructeurs peuvent donner cours.");
@@ -47,7 +47,7 @@ namespace BusinessLayer
         public void UpdateCourse(int id, CourseUpdateDTO courseDto)
         {
             var course = _courseRepository.GetCourseForUpdate(id);
-            var user = _userRepository.FindUserByUserId(courseDto.UserId);
+            var user = _userRepository.GetUserById(courseDto.UserId);
 
             if (course == null)
             {

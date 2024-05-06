@@ -74,9 +74,10 @@ builder.Services.AddSwaggerGen(option =>
 builder.Services.AddScoped<IAuthenticationServices, AuthenticationServices>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<CourseDbContext>(options => // => Injection de dependances
