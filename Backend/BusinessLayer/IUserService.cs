@@ -7,5 +7,6 @@ namespace BusinessLayer
     {
         IEnumerable<UserDTO> GetAllUsers();
         IEnumerable<StudentGradeDTO> GetStudentsGrades();
+        IEnumerable<UserDTO> GetUsersByRole(string roleName);
     }
 }
