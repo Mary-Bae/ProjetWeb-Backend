@@ -150,14 +150,14 @@ namespace BusinessLayer
             throw new ListOfExceptions(ErreurCodeEnum.InvalidToken);
         }
 
-        public void AssignRole(string username, string roleName)
+        public void AssignRole(string username, int roleId)
         {
             var user = _userRepository.FindUserByUsername(username);
             if (user == null)
             {
                 throw new ListOfExceptions(ErreurCodeEnum.UserNotFound);
             }
-            var role = _roleRepository.FindRoleByName(roleName);
+            var role = _roleRepository.FindRoleById(roleId);
             if (role == null)
             {
                 throw new ListOfExceptions(ErreurCodeEnum.RoleNotFound);

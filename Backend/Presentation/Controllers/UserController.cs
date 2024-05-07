@@ -78,5 +78,20 @@ namespace Presentation
             }
             return Ok(user);
         }
+
+        //[HttpPut("AssignRole")]
+        //[Authorize(Roles = "admin")]
+        //public IActionResult AssignRole(string username, int roleId)
+        //{
+        //    try
+        //    {
+        //        _userService.AssignRole(username, roleId);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
     }
 }

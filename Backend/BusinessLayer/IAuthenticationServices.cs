@@ -17,7 +17,6 @@ namespace BusinessLayer
         string GenerateJSONWebToken(User user);
         string HashPassword(string password, string salt);
         (ClaimsPrincipal, JwtSecurityToken) DecodeJwtToken(string token);
-
-        void AssignRole(string username, string roleName);
+        void AssignRole(string username, int roleId);
     }
 }

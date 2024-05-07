@@ -10,7 +10,7 @@ namespace DataAccessLayer
 {
     public interface IRoleRepository
     {
-        Role FindRoleByName(string roleName);
+        public Role FindRoleById(int roleId);
         IEnumerable<RoleDTO> GetAllRoles();
     }
 }
