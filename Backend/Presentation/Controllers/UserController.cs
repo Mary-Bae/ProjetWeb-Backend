@@ -26,7 +26,7 @@ namespace Presentation
         }
 
         [HttpGet("grades")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "student, admin, instructor")]
         public ActionResult<IEnumerable<StudentGradeDTO>> GetStudentGrades()
         {
             try
@@ -78,20 +78,5 @@ namespace Presentation
             }
             return Ok(user);
         }
-
-        //[HttpPut("AssignRole")]
-        //[Authorize(Roles = "admin")]
-        //public IActionResult AssignRole(string username, int roleId)
-        //{
-        //    try
-        //    {
-        //        _userService.AssignRole(username, roleId);
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
     }
 }
