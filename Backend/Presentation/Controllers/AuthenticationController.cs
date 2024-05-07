@@ -65,11 +65,11 @@ namespace Presentation
 
         [HttpPost("AssignRole")]
         [Authorize(Roles = "admin")]
-        public IActionResult AssignRole(string username, string roleName)
+        public IActionResult AssignRole(string username, int roleId)
         {
             try
             {
-                _authenticationService.AssignRole(username, roleName);
+                _authenticationService.AssignRole(username, roleId);
                 return Ok();
             }
             catch (Exception ex)

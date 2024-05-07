@@ -18,9 +18,9 @@ namespace DataAccessLayer
             _context = context;
         }
 
-        public Role FindRoleByName(string roleName)
+        public Role FindRoleById(int roleId)
         {
-            return _context.Roles.FirstOrDefault(r => r.RoleName == roleName);
+            return _context.Roles.FirstOrDefault(r => r.Id == roleId);
         }
 
         public IEnumerable<RoleDTO> GetAllRoles()

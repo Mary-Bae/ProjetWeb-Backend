@@ -26,7 +26,7 @@ namespace Presentation
         }
 
         [HttpGet("grades")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "student, admin, instructor")]
         public ActionResult<IEnumerable<StudentGradeDTO>> GetStudentGrades()
         {
             try

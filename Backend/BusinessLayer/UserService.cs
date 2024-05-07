@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer;
 using Domain;
+using ExceptionList;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace BusinessLayer
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IRoleRepository roleRepository)
         {
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
