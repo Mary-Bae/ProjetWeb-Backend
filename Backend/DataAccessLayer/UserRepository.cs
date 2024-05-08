@@ -33,14 +33,19 @@ namespace DataAccessLayer
 
         public IEnumerable<StudentGradeDTO> GetStudentsGrades()
         {
-            return _context.GradeStudents
-                .Where(gs => gs.User.Role.RoleName == "Student")
-                .Select(gs => new StudentGradeDTO
-                {
-                    Username = gs.User.Username,
-                    GradeName = gs.Grade.GradeName
-                })
-        .ToList();
+            // Jointure externe entre Users et GradeStudents
+            var students = from u in _context.Users
+                                join gs in _context.GradeStudents on u.Id equals gs.UserId into grades
+                           from g in grades.DefaultIfEmpty()  // Tous les étudiants sont inclus même ceux sans grade
+                           where u.Role.RoleName == "student"
+                           select new StudentGradeDTO
+                           {
+                              UserId = u.Id,
+                              Username = u.Username,
+                              GradeName = g.Grade != null ? g.Grade.GradeName : null
+                           };
+
+            return students.ToList();
         }
 
         public IEnumerable<UserDTO> GetUsersByRole(string roleName)
