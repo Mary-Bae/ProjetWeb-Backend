@@ -10,5 +10,6 @@ namespace DataAccessLayer
     public interface IGradeRepository
     {
         IEnumerable<GradeDTO> GetAllGrades();
+        StudentGradeDTO GetGradeByStudent(int id);
     }
 }

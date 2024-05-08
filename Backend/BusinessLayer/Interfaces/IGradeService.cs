@@ -10,5 +10,6 @@ namespace BusinessLayer
     public interface IGradeService
     {
         IEnumerable<GradeDTO> GetAllGrades();
+        StudentGradeDTO GetGradeByStudent(int Id);
     }
 }

@@ -26,5 +26,23 @@ namespace DataAccessLayer
         .ToList();
         }
 
+        public StudentGradeDTO? GetGradeByStudent(int id)
+        {
+            // Jointure externe entre Users et GradeStudents
+            var student = (from u in _context.Users
+                           join gs in _context.GradeStudents on u.Id equals gs.UserId into grades
+                           from g in grades.DefaultIfEmpty()  // Inclut les étudiants même sans grade
+                           where u.Id == id && u.Role.RoleName == "student"
+                           select new StudentGradeDTO
+                           {
+                               UserId = u.Id,
+                               Username = u.Username,
+                               GradeName = g.Grade != null ? g.Grade.GradeName : null,
+                               GradeId = g.Grade != null ? g.Grade.Id : 0
+                           }).FirstOrDefault();
+
+            return student;
+        }
+
     }
 }

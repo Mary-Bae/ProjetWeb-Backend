@@ -35,7 +35,7 @@ namespace DataAccessLayer
         {
             // Jointure externe entre Users et GradeStudents
             var students = from u in _context.Users
-                                join gs in _context.GradeStudents on u.Id equals gs.UserId into grades
+                           join gs in _context.GradeStudents on u.Id equals gs.UserId into grades
                            from g in grades.DefaultIfEmpty()  // Tous les étudiants sont inclus même ceux sans grade
                            where u.Role.RoleName == "student"
                            select new StudentGradeDTO
@@ -43,6 +43,7 @@ namespace DataAccessLayer
                               UserId = u.Id,
                               Username = u.Username,
                               GradeName = g.Grade != null ? g.Grade.GradeName : null
+
                            };
 
             return students.ToList();

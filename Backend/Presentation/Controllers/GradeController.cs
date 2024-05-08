@@ -21,5 +21,17 @@ namespace Presentation
             var grades = _gradeService.GetAllGrades();
             return Ok(grades);
         }
+
+        [HttpGet("GetGradeByUser/{userId}")]
+        [Authorize(Roles = "admin, instructor")]
+        public ActionResult<StudentGradeDTO> GetGradeByUser(int userId)
+        {
+            var user = _gradeService.GetGradeByStudent(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
     }
 }

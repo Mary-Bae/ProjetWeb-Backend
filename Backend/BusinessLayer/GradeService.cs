@@ -19,5 +19,10 @@ namespace BusinessLayer
         {
             return _gradeRepository.GetAllGrades();
         }
+
+        public StudentGradeDTO GetGradeByStudent(int Id)
+        {
+            return _gradeRepository.GetGradeByStudent(Id);
+        }
     }
 }
