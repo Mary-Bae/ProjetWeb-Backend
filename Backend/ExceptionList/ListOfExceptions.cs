@@ -8,7 +8,8 @@
             InvalidToken,
             UserNotFound,
             RoleNotFound,
-            CourseNotFound
+            CourseNotFound,
+            GradeExists
     }
         public class ListOfExceptions : Exception
         {
@@ -51,6 +52,9 @@
                     break;
                 case ErreurCodeEnum.CourseNotFound:
                     _messageToReturn = "Cours introuvable ";
+                    break;
+                case ErreurCodeEnum.GradeExists:
+                    _messageToReturn = "L'étudiant possède déjà un grade ";
                     break;
                 default:
                         _messageToReturn = "Erreur non reconnue";

@@ -11,5 +11,6 @@ namespace BusinessLayer
     {
         IEnumerable<GradeDTO> GetAllGrades();
         StudentGradeDTO GetGradeByStudent(int Id);
+        void AddGradeStudent(UpdStudentGradeDTO studentGrade);
     }
 }

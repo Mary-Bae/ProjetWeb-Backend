@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
+using Domain;
 using Models;
 
 namespace BusinessLayer
@@ -23,6 +24,17 @@ namespace BusinessLayer
         public StudentGradeDTO GetGradeByStudent(int Id)
         {
             return _gradeRepository.GetGradeByStudent(Id);
+        }
+        public void AddGradeStudent(UpdStudentGradeDTO studentGrade)
+        {
+           
+            var user = new UpdStudentGradeDTO
+            {
+                UserId = studentGrade.UserId,
+                GradeId = studentGrade.GradeId,
+            };
+
+            _gradeRepository.AddGradeStudent(user);
         }
     }
 }

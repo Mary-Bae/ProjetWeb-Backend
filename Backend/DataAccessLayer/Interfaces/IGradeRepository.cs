@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Domain;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace DataAccessLayer
     {
         IEnumerable<GradeDTO> GetAllGrades();
         StudentGradeDTO GetGradeByStudent(int id);
+        void AddGradeStudent(UpdStudentGradeDTO studentGradeDTO);
     }
 }

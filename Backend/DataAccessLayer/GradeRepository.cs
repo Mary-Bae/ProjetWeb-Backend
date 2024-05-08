@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain;
+using ExceptionList;
 using Models;
 
 namespace DataAccessLayer
@@ -42,6 +44,23 @@ namespace DataAccessLayer
                            }).FirstOrDefault();
 
             return student;
+        }
+        public void AddGradeStudent(UpdStudentGradeDTO studentGradeDTO)
+        {
+            var studentExiste = _context.GradeStudents.FirstOrDefault(gs => gs.UserId == studentGradeDTO.UserId);
+            if (studentExiste != null)
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.GradeExists);
+            }
+
+            var gradeStudent = new GradeStudent
+            {
+                UserId = studentGradeDTO.UserId,
+                GradeId = studentGradeDTO.GradeId
+            };
+
+            _context.GradeStudents.Add(gradeStudent);
+            _context.SaveChanges();
         }
 
     }

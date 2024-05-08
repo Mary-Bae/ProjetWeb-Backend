@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using ExceptionList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -32,6 +33,25 @@ namespace Presentation
                 return NotFound();
             }
             return Ok(user);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin, instructor")]
+        public IActionResult AddGradeStudent(UpdStudentGradeDTO studentGradeDTO)
+        {
+            try
+            {
+                _gradeService.AddGradeStudent(studentGradeDTO);
+                return Ok();
+            }
+            catch (ListOfExceptions ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
