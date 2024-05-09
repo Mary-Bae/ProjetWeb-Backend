@@ -42,5 +42,19 @@ namespace DataAccessLayer
                 throw new ListOfExceptions(ErreurCodeEnum.UnrollExists);
             }
         }
+
+        public void DelUnrollement(int userId, int courseId)
+        {
+            var unroll = _context.CourseStudents.FirstOrDefault(cs => cs.UserId == userId && cs.CourseId == courseId);
+            if (unroll != null)
+            {
+                _context.CourseStudents.Remove(unroll);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.UnrollNotFound);
+            }
+        }
     }
 }

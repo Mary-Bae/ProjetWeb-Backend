@@ -28,11 +28,26 @@ namespace Presentation
         }
 
         [HttpPost()]
+        [Authorize(Roles = "admin, instructor, student")]
         public IActionResult AddUnrollement(int userId, int courseId)
         {
             try
             {
                 _unrollService.AddUnrollement(userId, courseId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete()]
+        [Authorize(Roles = "admin, instructor, student")]
+        public ActionResult DelUnrollement(int userId, int courseId)
+        {
+            try
+            {
+                _unrollService.DelUnrollement(userId, courseId);
                 return Ok();
             }
             catch (Exception ex)

@@ -12,6 +12,7 @@ namespace DataAccessLayer
     {
         List<CourseStudentDTO> GetCoursesByStudent(int id);
         void AddUnrollement(int userId, int courseId);
+        void DelUnrollement(int userId, int courseId);
 
     }
 }

@@ -24,5 +24,10 @@ namespace BusinessLayer
         {
                 _unrollRepository.AddUnrollement(userId, courseId);
         }
+        public void DelUnrollement(int userId, int courseId)
+        {
+            _unrollRepository.DelUnrollement(userId, courseId);
+
+        }
     }
 }
