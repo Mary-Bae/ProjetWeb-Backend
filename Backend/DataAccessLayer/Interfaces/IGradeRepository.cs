@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Domain;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace DataAccessLayer
     public interface IGradeRepository
     {
         IEnumerable<GradeDTO> GetAllGrades();
-        StudentGradeDTO GetGradeByStudent(int id);
+        StudentGradeDTO? GetGradeByStudent(int id);
+        void UpdGradeStudent(int userId, int gradeId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using ExceptionList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -32,6 +33,22 @@ namespace Presentation
                 return NotFound();
             }
             return Ok(user);
+        }
+
+        [HttpPut]
+        [Authorize(Roles = "admin, instructor")]
+        public IActionResult UpdGradeStudent(int userId, int gradeId)
+        {
+            try
+            {
+                _gradeService.UpdateGradeStudent(userId, gradeId);
+                return Ok();
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

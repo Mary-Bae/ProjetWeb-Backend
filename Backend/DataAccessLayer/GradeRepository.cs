@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain;
+using ExceptionList;
 using Models;
 
 namespace DataAccessLayer
@@ -44,5 +46,25 @@ namespace DataAccessLayer
             return student;
         }
 
+        public void UpdGradeStudent(int userId, int gradeId)
+        {
+            var gradeStudent = _context.GradeStudents.FirstOrDefault(gs => gs.UserId == userId);
+            if (gradeStudent != null)
+            {
+                // Mise à jour du grade existant
+                gradeStudent.GradeId = gradeId;
+            }
+            else
+            {
+                // Création d'un nouvel enregistrement de grade
+                var newGradeStudent = new GradeStudent
+                {
+                    UserId = userId,
+                    GradeId = gradeId
+                };
+                _context.GradeStudents.Add(newGradeStudent);
+            }
+            _context.SaveChanges();
+        }
     }
 }
