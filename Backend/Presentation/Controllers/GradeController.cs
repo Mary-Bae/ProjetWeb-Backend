@@ -35,22 +35,19 @@ namespace Presentation
             return Ok(user);
         }
 
-        [HttpPost]
+        [HttpPut]
         [Authorize(Roles = "admin, instructor")]
-        public IActionResult AddGradeStudent(UpdStudentGradeDTO studentGradeDTO)
+        public IActionResult UpdGradeStudent(int userId, int gradeId)
         {
             try
             {
-                _gradeService.AddGradeStudent(studentGradeDTO);
+                _gradeService.UpdateGradeStudent(userId, gradeId);
                 return Ok();
             }
-            catch (ListOfExceptions ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return BadRequest(ex.Message);
             }
         }
     }

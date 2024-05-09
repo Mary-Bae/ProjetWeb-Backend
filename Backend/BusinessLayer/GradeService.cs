@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using Domain;
+using ExceptionList;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace BusinessLayer
@@ -21,20 +23,17 @@ namespace BusinessLayer
             return _gradeRepository.GetAllGrades();
         }
 
-        public StudentGradeDTO GetGradeByStudent(int Id)
+        public StudentGradeDTO? GetGradeByStudent(int Id)
         {
             return _gradeRepository.GetGradeByStudent(Id);
         }
-        public void AddGradeStudent(UpdStudentGradeDTO studentGrade)
-        {
-           
-            var user = new UpdStudentGradeDTO
-            {
-                UserId = studentGrade.UserId,
-                GradeId = studentGrade.GradeId,
-            };
 
-            _gradeRepository.AddGradeStudent(user);
+        public void UpdateGradeStudent(int userId, int gradeId)
+        {
+            _gradeRepository.UpdGradeStudent(userId, gradeId);
         }
+
+
+
     }
 }

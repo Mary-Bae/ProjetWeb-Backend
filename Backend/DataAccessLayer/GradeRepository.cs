@@ -45,23 +45,26 @@ namespace DataAccessLayer
 
             return student;
         }
-        public void AddGradeStudent(UpdStudentGradeDTO studentGradeDTO)
+
+        public void UpdGradeStudent(int userId, int gradeId)
         {
-            var studentExiste = _context.GradeStudents.FirstOrDefault(gs => gs.UserId == studentGradeDTO.UserId);
-            if (studentExiste != null)
+            var gradeStudent = _context.GradeStudents.FirstOrDefault(gs => gs.UserId == userId);
+            if (gradeStudent != null)
             {
-                throw new ListOfExceptions(ErreurCodeEnum.GradeExists);
+                // Mise à jour du grade existant
+                gradeStudent.GradeId = gradeId;
             }
-
-            var gradeStudent = new GradeStudent
+            else
             {
-                UserId = studentGradeDTO.UserId,
-                GradeId = studentGradeDTO.GradeId
-            };
-
-            _context.GradeStudents.Add(gradeStudent);
+                // Création d'un nouvel enregistrement de grade
+                var newGradeStudent = new GradeStudent
+                {
+                    UserId = userId,
+                    GradeId = gradeId
+                };
+                _context.GradeStudents.Add(newGradeStudent);
+            }
             _context.SaveChanges();
         }
-
     }
 }

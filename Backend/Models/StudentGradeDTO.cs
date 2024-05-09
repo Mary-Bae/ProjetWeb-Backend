@@ -13,9 +13,4 @@ namespace Models
         public string GradeName { get; set; }
         public int GradeId { get; set; }
     }
-    public class UpdStudentGradeDTO
-    {
-        public int UserId { get; set; }
-        public int GradeId { get; set; }
-    }
 }
