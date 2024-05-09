@@ -10,7 +10,9 @@
             RoleNotFound,
             CourseNotFound,
             GradeExists,
-            GradeNotFound
+            GradeNotFound,
+            UnrollExists,
+            UnrollNotFound
     }
         public class ListOfExceptions : Exception
         {
@@ -59,6 +61,12 @@
                     break;
                 case ErreurCodeEnum.GradeNotFound:
                     _messageToReturn = "L'étudiant ne possède pas de grade à modifier ";
+                    break;
+                case ErreurCodeEnum.UnrollExists:
+                    _messageToReturn = "L'étudiant est déjà enrollé à ce cours ";
+                    break;
+                case ErreurCodeEnum.UnrollNotFound:
+                    _messageToReturn = "L'étudiant n'est pas enrollé à ce cours ";
                     break;
                 default:
                         _messageToReturn = "Erreur non reconnue";
