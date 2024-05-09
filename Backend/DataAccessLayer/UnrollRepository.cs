@@ -1,4 +1,5 @@
 ﻿using Domain;
+using ExceptionList;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,19 @@ namespace DataAccessLayer
                             }).ToList();
 
             return courses;
+        }
+
+        public void AddUnrollement(int userId, int courseId)
+        {
+            if (!_context.CourseStudents.Any(cs => cs.UserId == userId && cs.CourseId == courseId))
+            {
+                _context.CourseStudents.Add(new CourseStudent { UserId = userId, CourseId = courseId });
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.UnrollExists);
+            }
         }
     }
 }

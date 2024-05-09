@@ -26,6 +26,20 @@ namespace Presentation
             }
                 return Ok(user);
         }
+
+        [HttpPost()]
+        public IActionResult AddUnrollement(int userId, int courseId)
+        {
+            try
+            {
+                _unrollService.AddUnrollement(userId, courseId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
 

@@ -19,5 +19,10 @@ namespace BusinessLayer
         {
             return _unrollRepository.GetCoursesByStudent(id);
         }
+
+        public void AddUnrollement(int userId, int courseId)
+        {
+                _unrollRepository.AddUnrollement(userId, courseId);
+        }
     }
 }
