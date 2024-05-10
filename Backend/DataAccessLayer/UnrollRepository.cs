@@ -56,5 +56,20 @@ namespace DataAccessLayer
                 throw new ListOfExceptions(ErreurCodeEnum.UnrollNotFound);
             }
         }
+
+
+        public List<CourseStudentWithNameDTO> GetStudentsByCourse(int courseId)
+        {
+            return _context.CourseStudents
+                           .Where(cs => cs.CourseId == courseId)
+                           .Select(cs => new CourseStudentWithNameDTO
+                           {
+                               UserId = cs.UserId,
+                               CourseId = cs.CourseId,
+                               Username = cs.User.Username,
+                               CourseName = cs.Course.Name
+                           })
+                           .ToList();
+        }
     }
 }

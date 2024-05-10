@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -55,6 +56,20 @@ namespace Presentation
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("StudentsByCourse/{courseId}")]
+        [Authorize(Roles = "instructor, admin")]
+        public ActionResult<List<CourseStudentDTO>> GetStudentsByCourse(int courseId)
+        {
+            var students = _unrollService.GetStudentByCourse(courseId);
+            
+            if (students == null)
+            {
+                return NotFound();
+            }
+                return Ok(students);
+        }
     }
 }
+
 

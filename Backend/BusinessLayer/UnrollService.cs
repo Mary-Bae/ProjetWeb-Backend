@@ -29,5 +29,9 @@ namespace BusinessLayer
             _unrollRepository.DelUnrollement(userId, courseId);
 
         }
+        public List<CourseStudentWithNameDTO> GetStudentByCourse(int id)
+        {
+            return _unrollRepository.GetStudentsByCourse(id);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using BusinessLayer;
+using ExceptionList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,9 +29,9 @@ namespace Presentation
                 _authenticationService.RegisterUser(login, password);
                 return Ok();
             }
-            catch (Exception ex)
+            catch (ListOfExceptions ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -44,7 +45,7 @@ namespace Presentation
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
