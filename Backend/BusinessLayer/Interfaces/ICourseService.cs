@@ -15,5 +15,6 @@ namespace BusinessLayer
         void AddCourse(CourseCreateDTO courseDto);
         void DeleteCourse(int id);
         void UpdateCourse(int id, CourseUpdateDTO courseDto);
+        List<CourseDTO> GetCoursesByTeacherId(int Id);
     }
 }

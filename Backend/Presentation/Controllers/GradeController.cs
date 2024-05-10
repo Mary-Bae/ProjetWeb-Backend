@@ -24,7 +24,7 @@ namespace Presentation
         }
 
         [HttpGet("GetGradeByUser/{userId}")]
-        [Authorize(Roles = "admin, instructor")]
+        [Authorize(Roles = "student, admin, instructor")]
         public ActionResult<StudentGradeDTO> GetGradeByUser(int userId)
         {
             var user = _gradeService.GetGradeByStudent(userId);
