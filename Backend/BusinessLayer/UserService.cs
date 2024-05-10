@@ -44,5 +44,22 @@ namespace BusinessLayer
         {
             return _userRepository.GetUserById(id);
         }
+
+        public UserDTO GetUserByUsername(string username)
+        {
+            var user = _userRepository.FindUserByUsername(username);
+            if (user == null)
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.UserNotFound);
+            }
+
+            return new UserDTO
+            {
+                Id = user.Id,
+                Username = user.Username,
+                RoleId = user.Role.Id,
+                RoleName = user.Role.RoleName
+            };
+        }
     }
 }

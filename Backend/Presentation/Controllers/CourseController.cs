@@ -33,7 +33,7 @@ namespace Presentation
         }
 
         [HttpGet("ById")]
-        [Authorize(Roles = "admin, instructor")]
+        [Authorize(Roles = "student, admin, instructor")]
         public ActionResult<CourseDTO> Get(int id)
         {
             var course = _courseService.Get(id);
@@ -99,6 +99,18 @@ namespace Presentation
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpGet("ByTeacher/{Id}")]
+        [Authorize(Roles = "instructor")]
+        public ActionResult<List<CourseDTO>> GetCoursesByInstructor(int Id)
+        {
+            var courses = _courseService.GetCoursesByTeacherId(Id);
+            if (courses == null || courses.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(courses);
         }
 
     }

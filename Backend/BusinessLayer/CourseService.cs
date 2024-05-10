@@ -67,7 +67,13 @@ namespace BusinessLayer
             _courseRepository.UpdateCourse(course);
         }
 
-        
+        public List<CourseDTO> GetCoursesByTeacherId(int Id)
+        {
+            return _courseRepository.GetCoursesByTeacherId(Id);
+        }
+
+
+
     }
 
 

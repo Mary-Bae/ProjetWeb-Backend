@@ -78,5 +78,19 @@ namespace Presentation
             }
             return Ok(user);
         }
+
+        [HttpGet("ByUsername/{username}")]
+        public IActionResult GetUserByUsername(string username)
+        {
+            try
+            {
+                var userDto = _userService.GetUserByUsername(username);
+                return Ok(userDto);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

@@ -77,5 +77,22 @@ namespace DataAccessLayer
             _context.SaveChanges();
         }
 
+        public List<CourseDTO> GetCoursesByTeacherId(int Id)
+        {
+            return _context.Courses
+                .Where(c => c.UserId == Id)
+                .Select(c => new CourseDTO
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    LevelName = c.LevelName,
+                    Schedule = c.Schedule,
+                    Username = c.User.Username,
+                    UserId = c.UserId,
+                    Description = c.Description
+                })
+                .ToList();
+        }
+
     }
 }

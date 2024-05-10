@@ -16,6 +16,7 @@ namespace DataAccessLayer
         void AddCourse(Course course);
         void DeleteCourse(int id);
         void UpdateCourse(Course course);
+        List<CourseDTO> GetCoursesByTeacherId(int Id);
 
     }
 }

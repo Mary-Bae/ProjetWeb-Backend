@@ -10,5 +10,6 @@ namespace BusinessLayer
         IEnumerable<UserDTO> GetUsersByRole(string roleName);
         void DeleteUser(int id);
         UserDTO? GetUserById(int id);
+        UserDTO GetUserByUsername(string username);
     }
 }
