@@ -11,4 +11,12 @@ namespace Models
         public int UserId { get; set; }
         public int CourseId { get; set; }
     }
+
+    public class CourseStudentWithNameDTO
+    {
+        public int UserId { get; set; }
+        public int CourseId { get; set; }
+        public string Username { get; set; }
+        public string CourseName { get; set; }
+    }
 }
