@@ -18,6 +18,7 @@ namespace DataAccessLayer
         void UpdateCourse(Course course);
         List<CourseDTO> GetCoursesByTeacherId(int Id);
         bool IsTeacherInCourse(int userId);
+        bool CourseExists(string name, string levelName);
 
     }
 }

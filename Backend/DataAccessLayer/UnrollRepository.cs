@@ -32,15 +32,8 @@ namespace DataAccessLayer
 
         public void AddUnrollement(int userId, int courseId)
         {
-            if (!_context.CourseStudents.Any(cs => cs.UserId == userId && cs.CourseId == courseId))
-            {
-                _context.CourseStudents.Add(new CourseStudent { UserId = userId, CourseId = courseId });
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new ListOfExceptions(ErreurCodeEnum.UnrollExists);
-            }
+            _context.CourseStudents.Add(new CourseStudent { UserId = userId, CourseId = courseId });
+            _context.SaveChanges();
         }
 
         public void DelUnrollement(int userId, int courseId)
@@ -50,10 +43,6 @@ namespace DataAccessLayer
             {
                 _context.CourseStudents.Remove(unroll);
                 _context.SaveChanges();
-            }
-            else
-            {
-                throw new ListOfExceptions(ErreurCodeEnum.UnrollNotFound);
             }
         }
 
@@ -75,6 +64,10 @@ namespace DataAccessLayer
         public bool IsUnrolledInCourse(int userId)
         {
             return _context.CourseStudents.Any(cs => cs.UserId == userId);
+        }
+        public bool IsUnrolledInThisCourse(int userId, int courseId)
+        {
+            return _context.CourseStudents.Any(cs => cs.UserId == userId && cs.CourseId == courseId);
         }
     }
 }

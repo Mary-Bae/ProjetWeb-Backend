@@ -15,6 +15,7 @@ namespace DataAccessLayer
         void DelUnrollement(int userId, int courseId);
         List<CourseStudentWithNameDTO> GetStudentsByCourse(int courseId);
         bool IsUnrolledInCourse(int userId);
+        bool IsUnrolledInThisCourse(int userId, int courseId);
 
     }
 }

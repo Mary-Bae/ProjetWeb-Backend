@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using ExceptionList;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,12 @@ namespace BusinessLayer
 
         public void AddUnrollement(int userId, int courseId)
         {
+            //Empeche l'utilisateur déjà enrollé à ce cours de s'enroller à nouveau
+            if (!_unrollRepository.IsUnrolledInThisCourse(userId, courseId))
+            {
                 _unrollRepository.AddUnrollement(userId, courseId);
+            }
+           
         }
         public void DelUnrollement(int userId, int courseId)
         {

@@ -9,10 +9,12 @@ namespace BusinessLayer
     {
         private readonly ICourseRepository _courseRepository;
         private readonly IUserRepository _userRepository;
-        public CourseService(ICourseRepository courseRepository, IUserRepository userRepository)
+        private readonly IUnrollRepository _unrollRepository;
+        public CourseService(ICourseRepository courseRepository, IUserRepository userRepository, IUnrollRepository unrollRepository)
         {
             _courseRepository = courseRepository;
             _userRepository = userRepository;
+            _unrollRepository = unrollRepository;
         }
         public IEnumerable<CourseDTO> GetAll()
         {
@@ -24,6 +26,11 @@ namespace BusinessLayer
         }
         public void AddCourse(CourseCreateDTO courseDto)
         {
+            if (_courseRepository.CourseExists(courseDto.Name, courseDto.LevelName))
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.CourseExists);
+            }
+
             var user = _userRepository.GetUserById(courseDto.UserId);
             if (user == null || user.RoleId != 2)
             {
@@ -43,6 +50,18 @@ namespace BusinessLayer
 
         public void DeleteCourse(int id)
         {
+            var course = _courseRepository.GetCourseForUpdate(id);
+            if (course == null)
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.CourseNotFound);
+            }
+
+            var studentsUnrolled = _unrollRepository.GetStudentsByCourse(id);
+            if (studentsUnrolled.Count > 0)
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.StudentsUnrolled);
+            }
+
             _courseRepository.DeleteCourse(id);
         }
         public void UpdateCourse(int id, CourseUpdateDTO courseDto)
@@ -57,6 +76,10 @@ namespace BusinessLayer
             if (user == null || user.RoleId != 2)
             {
                 throw new ListOfExceptions(ErreurCodeEnum.InstructorOnly);
+            }
+            if (_courseRepository.CourseExists(courseDto.Name, courseDto.LevelName))
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.CourseExists);
             }
 
             course.Name = courseDto.Name;
