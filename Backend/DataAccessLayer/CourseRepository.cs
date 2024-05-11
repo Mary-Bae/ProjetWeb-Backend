@@ -59,37 +59,21 @@ namespace DataAccessLayer
         }
         public void AddCourse(Course course)
         {
-            bool courseExists = _context.Courses.Any(c => c.Name == course.Name && c.LevelName == course.LevelName);
-            if (courseExists)
-                throw new ListOfExceptions(ErreurCodeEnum.CourseExists);
-
             _context.Courses.Add(course);
             _context.SaveChanges();
 
         }
         public void DeleteCourse(int id)
         {
-
             var course = _context.Courses.Find(id);
-            if (course == null)
+            if (course != null)
             {
-                throw new ListOfExceptions(ErreurCodeEnum.CourseNotFound);
+                _context.Courses.Remove(course);
+                _context.SaveChanges();
             }
-            var isEnrolled = _context.CourseStudents.Any(cs => cs.CourseId == id);
-            if (isEnrolled)
-            {
-                throw new ListOfExceptions(ErreurCodeEnum.StudentsUnrolled);
-            }
-
-            _context.Courses.Remove(course);
-            _context.SaveChanges();
         }
         public void UpdateCourse(Course course)
-        {
-            bool courseExists = _context.Courses.Any(c => c.Name == course.Name && c.LevelName == course.LevelName);
-            if (courseExists)
-                throw new ListOfExceptions(ErreurCodeEnum.CourseExists);
-           
+        {  
             _context.Courses.Update(course);
             _context.SaveChanges();
         }
@@ -113,6 +97,10 @@ namespace DataAccessLayer
         public bool IsTeacherInCourse(int userId)
         {
             return _context.Courses.Any(c => c.UserId == userId);
+        }
+        public bool CourseExists(string name, string levelName)
+        {
+            return _context.Courses.Any(c => c.Name == name && c.LevelName == levelName);
         }
 
     }

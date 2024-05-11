@@ -32,8 +32,5 @@ namespace BusinessLayer
         {
             _gradeRepository.UpdGradeStudent(userId, gradeId);
         }
-
-
-
     }
 }
