@@ -20,15 +20,15 @@ namespace DataAccessLayer
         }
         public IEnumerable<UserDTO> GetAllUsers()
         {
-                return _context.Users
-                .Include(c => c.Role)
-                .Select(c => new UserDTO
-                {
-                    Id = c.Id,
-                    Username = c.Username,
-                    RoleName = c.Role.RoleName,
-                })
-            .ToList();
+            return _context.Users
+            .Include(c => c.Role)
+            .Select(c => new UserDTO
+            {
+                Id = c.Id,
+                Username = c.Username,
+                RoleName = c.Role.RoleName,
+            })
+        .ToList();
         }
 
         public IEnumerable<StudentGradeDTO> GetStudentsGrades()
@@ -40,9 +40,9 @@ namespace DataAccessLayer
                            where u.Role.RoleName == "student"
                            select new StudentGradeDTO
                            {
-                              UserId = u.Id,
-                              Username = u.Username,
-                              GradeName = g.Grade != null ? g.Grade.GradeName : null
+                               UserId = u.Id,
+                               Username = u.Username,
+                               GradeName = g.Grade != null ? g.Grade.GradeName : null
 
                            };
 
@@ -101,10 +101,7 @@ namespace DataAccessLayer
                 _context.Users.Remove(user);
                 _context.SaveChanges();
             }
-            else
-            {
-                throw new ListOfExceptions(ErreurCodeEnum.UserNotFound);
-            }
         }
     }
 }
+

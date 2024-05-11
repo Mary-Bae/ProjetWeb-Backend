@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer;
 using Domain;
+using ExceptionList;
 using Models;
 
 namespace BusinessLayer
@@ -26,7 +27,7 @@ namespace BusinessLayer
             var user = _userRepository.GetUserById(courseDto.UserId);
             if (user == null || user.RoleId != 2)
             {
-                throw new UnauthorizedAccessException("Seuls les instructeurs peuvent donner cours.");
+                throw new ListOfExceptions(ErreurCodeEnum.InstructorOnly);
             }
             var course = new Course
             {
@@ -51,11 +52,11 @@ namespace BusinessLayer
 
             if (course == null)
             {
-                throw new InvalidOperationException("Course not found");
+                throw new ListOfExceptions(ErreurCodeEnum.CourseNotFound);
             }     
             if (user == null || user.RoleId != 2)
             {
-                throw new UnauthorizedAccessException("Seuls les instructeurs peuvent donner cours.");
+                throw new ListOfExceptions(ErreurCodeEnum.InstructorOnly);
             }
 
             course.Name = courseDto.Name;

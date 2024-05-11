@@ -29,7 +29,7 @@ namespace Presentation
                 _authenticationService.RegisterUser(login, password);
                 return Ok();
             }
-            catch (ListOfExceptions ex)
+            catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
@@ -60,7 +60,7 @@ namespace Presentation
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -75,7 +75,7 @@ namespace Presentation
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
     }

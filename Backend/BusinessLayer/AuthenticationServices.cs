@@ -18,13 +18,20 @@ namespace BusinessLayer
     public class AuthenticationServices : IAuthenticationServices
     {
         private readonly IUserRepository _userRepository;
+        private readonly IGradeRepository _gradeRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly IUnrollRepository _unrollRepository;
+        private readonly ICourseRepository _courseRepository;
         private readonly IConfiguration _config;
 
-        public AuthenticationServices(IUserRepository userRepository, IConfiguration config, IRoleRepository roleRepository)
+        public AuthenticationServices(IUserRepository userRepository, IConfiguration config, ICourseRepository courseRepository,
+            IRoleRepository roleRepository, IGradeRepository gradeRepository, IUnrollRepository unrollRepository)
         {
             _userRepository = userRepository;
             _roleRepository = roleRepository;
+            _gradeRepository = gradeRepository;
+            _unrollRepository = unrollRepository;
+            _courseRepository = courseRepository;
             _config = config;
         }
 
@@ -163,6 +170,34 @@ namespace BusinessLayer
                 throw new ListOfExceptions(ErreurCodeEnum.RoleNotFound);
             }
 
+            if (user.RoleId != roleId)
+            {
+                // Si l'utilisateur est un étudiant de base et devient autre chose
+                if (user.RoleId == 3 && roleId != 3)
+                {
+                    // Supprimer les grades et les enrollments associés
+                    _gradeRepository.DelGradeStudent(user.Id);
+
+                    var unrolls = _unrollRepository.GetCoursesByStudent(user.Id);
+                    if (unrolls.Any())
+                    {
+                        foreach (var unroll in unrolls)
+                        {
+                            _unrollRepository.DelUnrollement(unroll.UserId, unroll.CourseId);
+                        }
+                    }
+                }
+                // Si c'est un instructeur de base qui enseigne un cours, empecher l'update
+                else if (user.RoleId == 2 && roleId != 2)
+                {
+                    var isTeacherinCourse = _courseRepository.IsTeacherInCourse(user.Id);
+                    if (isTeacherinCourse)
+                    {
+                        throw new ListOfExceptions(ErreurCodeEnum.TeacherInCourse);
+                    }
+                }
+                    
+            }
             user.RoleId = role.Id;
             _userRepository.UpdateUser(user);
         }
