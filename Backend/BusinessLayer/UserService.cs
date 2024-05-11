@@ -14,11 +14,18 @@ namespace BusinessLayer
     {
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly ICourseRepository _courseRepository;
+        private readonly IUnrollRepository _unrollRepository;
+        private readonly IGradeRepository _gradeRepository;
 
-        public UserService(IUserRepository userRepository, IRoleRepository roleRepository)
+        public UserService(IUserRepository userRepository, IRoleRepository roleRepository,
+            ICourseRepository courseRepository, IUnrollRepository unrollRepository, IGradeRepository gradeRepository)
         {
             _userRepository = userRepository;
             _roleRepository = roleRepository;
+            _courseRepository = courseRepository;
+            _unrollRepository = unrollRepository;
+            _gradeRepository = gradeRepository;
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
@@ -36,9 +43,37 @@ namespace BusinessLayer
             return _userRepository.GetStudentsGrades();
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(int userId)
         {
-            _userRepository.DeleteUser(id);
+            //L'utilisateur doit exister
+            var user = _userRepository.GetUserById(userId);
+            if (user == null)
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.UserNotFound);
+            }
+            //Si c'est un instructeur qui donne cours, il doit d'abord se désinscrire du cours qu'il enseigne
+            var isTeacherinCourse = _courseRepository.IsTeacherInCourse(userId);
+            if (isTeacherinCourse)
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.TeacherInCourse);
+            }
+            // Si c'est un étudiant, son delete entrainera le delete de ses enrollements
+            var unrolls = _unrollRepository.GetCoursesByStudent(userId);
+            if (unrolls.Any())
+            {
+                foreach (var unroll in unrolls)
+                {
+                    _unrollRepository.DelUnrollement(unroll.UserId, unroll.CourseId);
+                }
+            }
+            //Si c'est un étudiant, le delete entrainera aussi le delete de son grade
+            var grade = _gradeRepository.GetGradeByStudent(userId);
+            if (grade != null)
+            {
+                _gradeRepository.DelGradeStudent(userId);
+            }
+
+            _userRepository.DeleteUser(userId);
         }
         public UserDTO? GetUserById(int id)
         {

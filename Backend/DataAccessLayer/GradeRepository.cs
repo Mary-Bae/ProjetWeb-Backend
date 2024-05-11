@@ -66,5 +66,14 @@ namespace DataAccessLayer
             }
             _context.SaveChanges();
         }
+        public void DelGradeStudent(int userId)
+        {
+            var gradeStudent = _context.GradeStudents.FirstOrDefault(gs => gs.UserId == userId);
+            if (gradeStudent != null)
+            {
+                _context.GradeStudents.Remove(gradeStudent);
+                _context.SaveChanges();
+            }
+        }
     }
 }

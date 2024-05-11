@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Models;
+using System.Data.Common;
 using System.Linq.Expressions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -58,32 +59,37 @@ namespace DataAccessLayer
         }
         public void AddCourse(Course course)
         {
-            try
-            {
-                _context.Courses.Add(course);
-                _context.SaveChanges();
-            }
-            
-            catch  (DbUpdateException)
-            {
-                    throw new ListOfExceptions(ErreurCodeEnum.CourseExists);
-            }
+            bool courseExists = _context.Courses.Any(c => c.Name == course.Name && c.LevelName == course.LevelName);
+            if (courseExists)
+                throw new ListOfExceptions(ErreurCodeEnum.CourseExists);
+
+            _context.Courses.Add(course);
+            _context.SaveChanges();
+
         }
         public void DeleteCourse(int id)
         {
+
             var course = _context.Courses.Find(id);
-            if (course != null)
-            {
-                _context.Courses.Remove(course);
-                _context.SaveChanges();
-            }
-            else
+            if (course == null)
             {
                 throw new ListOfExceptions(ErreurCodeEnum.CourseNotFound);
             }
+            var isEnrolled = _context.CourseStudents.Any(cs => cs.CourseId == id);
+            if (isEnrolled)
+            {
+                throw new ListOfExceptions(ErreurCodeEnum.StudentsUnrolled);
+            }
+
+            _context.Courses.Remove(course);
+            _context.SaveChanges();
         }
         public void UpdateCourse(Course course)
         {
+            bool courseExists = _context.Courses.Any(c => c.Name == course.Name && c.LevelName == course.LevelName);
+            if (courseExists)
+                throw new ListOfExceptions(ErreurCodeEnum.CourseExists);
+           
             _context.Courses.Update(course);
             _context.SaveChanges();
         }
@@ -103,6 +109,10 @@ namespace DataAccessLayer
                     Description = c.Description
                 })
                 .ToList();
+        }
+        public bool IsTeacherInCourse(int userId)
+        {
+            return _context.Courses.Any(c => c.UserId == userId);
         }
 
     }

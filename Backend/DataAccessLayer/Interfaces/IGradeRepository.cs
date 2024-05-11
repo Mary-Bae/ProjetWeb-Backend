@@ -13,5 +13,6 @@ namespace DataAccessLayer
         IEnumerable<GradeDTO> GetAllGrades();
         StudentGradeDTO? GetGradeByStudent(int id);
         void UpdGradeStudent(int userId, int gradeId);
+        void DelGradeStudent(int userId);
     }
 }

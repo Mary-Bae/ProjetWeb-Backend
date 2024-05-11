@@ -71,5 +71,10 @@ namespace DataAccessLayer
                            })
                            .ToList();
         }
+
+        public bool IsUnrolledInCourse(int userId)
+        {
+            return _context.CourseStudents.Any(cs => cs.UserId == userId);
+        }
     }
 }
