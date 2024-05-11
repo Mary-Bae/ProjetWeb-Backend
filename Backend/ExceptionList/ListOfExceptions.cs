@@ -12,7 +12,9 @@
             GradeExists,
             GradeNotFound,
             UnrollExists,
-            UnrollNotFound
+            UnrollNotFound,
+            InstructorOnly,
+            CourseExists
     }
         public class ListOfExceptions : Exception
         {
@@ -67,6 +69,12 @@
                     break;
                 case ErreurCodeEnum.UnrollNotFound:
                     _messageToReturn = "L'étudiant n'est pas enrollé à ce cours ";
+                    break;
+                case ErreurCodeEnum.InstructorOnly:
+                    _messageToReturn = "Seuls les instructeurs peuvent donner cours.";
+                    break;
+                case ErreurCodeEnum.CourseExists:
+                    _messageToReturn = "Un cours au même nom et au même niveau existe déjà.";
                     break;
                 default:
                         _messageToReturn = "Erreur non reconnue";

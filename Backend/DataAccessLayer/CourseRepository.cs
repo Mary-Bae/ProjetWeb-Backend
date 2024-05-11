@@ -1,8 +1,11 @@
 ﻿using Domain;
 using ExceptionList;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Models;
+using System.Linq.Expressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DataAccessLayer
 {
@@ -55,8 +58,16 @@ namespace DataAccessLayer
         }
         public void AddCourse(Course course)
         {
-            _context.Courses.Add(course);
-            _context.SaveChanges();
+            try
+            {
+                _context.Courses.Add(course);
+                _context.SaveChanges();
+            }
+            
+            catch  (DbUpdateException)
+            {
+                    throw new ListOfExceptions(ErreurCodeEnum.CourseExists);
+            }
         }
         public void DeleteCourse(int id)
         {

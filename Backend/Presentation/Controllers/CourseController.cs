@@ -53,13 +53,9 @@ namespace Presentation
                 _courseService.AddCourse(courseDto);
                 return Ok();
             }
-            catch (DbUpdateException ex)
-            {
-                return BadRequest(ex.Message);
-            }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -93,7 +89,7 @@ namespace Presentation
             }
             catch (InvalidOperationException ex)
             {
-                return NotFound(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
             catch (Exception ex)
             {
