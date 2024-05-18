@@ -81,7 +81,7 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IGradeRepository, GradeRepository>();
 builder.Services.AddScoped<IGradeService, GradeService>();
 builder.Services.AddScoped<IUnrollRepository, UnrollRepository>();
-builder.Services.AddScoped<IUnrollService, UnrollService>
+builder.Services.AddScoped<IUnrollService, UnrollService>();
 
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<CourseDbContext>(options => // => Injection de dependances
