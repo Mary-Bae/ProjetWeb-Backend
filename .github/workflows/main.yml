@@ -15,6 +15,8 @@ jobs:  # Type: Mapping (associative array)
      
       - name: Restore NuGet packages  # Type: Mapping (associative array)
         run: dotnet restore  # Type: Scalar
+        working-directory: ./Backend
      
       - name: Build the project  # Type: Mapping (associative array)
         run: dotnet build  # Type: Scalar
+        working-directory: ./Backend
