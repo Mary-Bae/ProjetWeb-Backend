@@ -1,0 +1,20 @@
+name: CI  # Type: Scalar
+ 
+on:  # Type: Mapping (associative array)
+  push:  # Type: Mapping (associative array)
+    branches:  # Type: Sequence (array)
+      - main  # Type: Scalar
+ 
+jobs:  # Type: Mapping (associative array)
+  build:  # Type: Mapping (associative array)
+    runs-on: ubuntu-latest  # Type: Scalar
+   
+    steps:  # Type: Sequence (array)
+      - name: Checkout code  # Type: Mapping (associative array)
+        uses: actions/checkout@v2  # Type: Scalar
+     
+      - name: Restore NuGet packages  # Type: Mapping (associative array)
+        run: dotnet restore  # Type: Scalar
+     
+      - name: Build the project  # Type: Mapping (associative array)
+        run: dotnet build  # Type: Scalar
